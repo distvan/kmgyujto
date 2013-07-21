@@ -1,0 +1,31 @@
+<table>
+    <tr>
+        <th>Dátum</th>
+        <th>Km</th>
+        <th></th>
+    </tr>
+    {% for item in weeklyDistances %}
+    <tr id="row_{{item.date}}">
+        <td>{{item.date}}.</td>
+        <td>{{item.distance}}</td>
+        <td><a id="{{item.date}}">Töröl</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<input name="fid" type="hidden" value="{{fid}}" />
+<script type="text/javascript">
+$('td a').click(function(){
+    var id = $(this).attr('id');
+    $.ajax({
+        type: 'POST',
+        url: '/ajax/deleteDistance',
+        dataType: 'html',
+        data: 'fid=' + encodeURIComponent($('input[name=\'fid\']').val())+'&date='+encodeURIComponent(id),
+        beforeSend: function() {},
+        complete: function() {},
+        success: function(result) {
+            $('#row_' + id).remove();
+        }
+    });
+});
+</script>

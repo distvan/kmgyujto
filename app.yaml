@@ -1,0 +1,31 @@
+application: kmgyujto
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: jinja2
+  version: latest
+
+handlers:
+
+- url: /favicon\.ico
+  static_files: static/img/favicon.ico
+  upload: static/img/favicon\.ico
+
+- url: /channel.html
+  static_files: static/channel.html
+  upload: static/channel\.html
+
+- url: /static/css
+  static_dir: static/css
+
+- url: /static/img
+  static_dir: static/img
+
+- url: /static/js
+  static_dir: static/js
+
+- url: /.*
+  script: main.app

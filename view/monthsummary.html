@@ -1,0 +1,25 @@
+<table>
+    <tr>
+        <th>Hónap</th>
+        <th>Összes km</th>
+    </tr>
+    {% for item in monthSummary %}
+    <tr>
+        <td>
+            {% if item.month == 1%}Január{% endif %}
+            {% if item.month == 2%}Február{% endif %}
+            {% if item.month == 3%}Március{% endif %}
+            {% if item.month == 4%}Április{% endif %}
+            {% if item.month == 5%}Május{% endif %}
+            {% if item.month == 6%}Június{% endif %}
+            {% if item.month == 7%}Július{% endif %}
+            {% if item.month == 8%}Augusztus{% endif %}
+            {% if item.month == 9%}Szeptember{% endif %}
+            {% if item.month == 10%}Október{% endif %}
+            {% if item.month == 11%}November{% endif %}
+            {% if item.month == 12%}December{% endif %}
+        </td>
+        <td>{{item.summary}}</td>
+    </tr>
+    {% endfor %}
+</table>

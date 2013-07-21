@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:fb="https://www.facebook.com/2008/fbml">
+{% include 'header.html' %}
+<body>
+    {% include 'fbinit.html' %}
+    <div class="page-container">
+		<div id="page">
+			<div id="page-title"></div>
+			<div id="join-us"><a href="/joinus"><span>&nbsp;</span></a></div>
+			<a href="/gamerules"><div id="game-conditions"></div></a>
+            <div id="quotations">
+                <p>"{{ text }}"</p>
+                <p>{{ author }}</p>
+            </div>
+            <div id="topListContainer">
+                <ul id="topListMenu">
+                    <li class="active"><a href="#week">Heti top 10</a></li>
+                    <li><a href="#month">Havi top 10</a></li>
+                    <li><a href="#year">Idei top 10</a></li>
+                </ul>            
+                <div class="topListContent" id="week">
+                    <table>
+                            {% for topitem in topweek %}
+                                {% if topitem.summary > 0%}
+                                <tr>
+                                    <td>{{loop.index}}.</td>
+                                    <td><a target="_blank" href="http://www.facebook.com/{{topitem.fid}}">{{topitem.name}}</a></td>
+                                    <td>{{topitem.summary}} km</td>
+                                </tr>
+                                {% endif %}
+                            {% endfor %}
+                    </table>
+                </div>
+                <div class="topListContent" id="month">
+                    <table>
+                            {% for topitem in topmonth %}
+                                {% if topitem.summary > 0%}
+                                <tr>
+                                    <td>{{loop.index}}.</td>
+                                    <td><a target="_blank" href="http://www.facebook.com/{{topitem.fid}}">{{topitem.name}}</a></td>
+                                    <td>{{topitem.summary}} km</td>
+                                </tr>
+                                {% endif %}
+                            {% endfor %}
+                    </table>
+                </div>
+                <div class="topListContent" id="year">
+                    <table>
+                            {% for topitem in topyear %}
+                                {% if topitem.summary > 0%}
+                                <tr>
+                                    <td>{{loop.index}}.</td>
+                                    <td><a target="_blank" href="http://www.facebook.com/{{topitem.fid}}">{{topitem.name}}</a></td>
+                                    <td>{{topitem.summary}} km</td>
+                                </tr>
+                                {% endif %}
+                            {% endfor %}
+                    </table>
+                </div>
+            </div>
+		</div>
+		{% include 'footer.html' %}
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#topListMenu').tabify();
+        $('#topListMenu li a').click(function(){
+            //alert($(this).attr('href'))
+        });
+    });
+    </script>
+</body>
+</html>

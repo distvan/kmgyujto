@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:fb="https://www.facebook.com/2008/fbml">
+{% include 'header.html' %}
+<body>
+    {% include 'fbinit.html' %}
+    <div class="page-container-gc">		
+		<div id="page">
+			<div id="page-title"></div>
+			<h1>Regisztrácó</h1>
+			<div class="white-right-box">
+                <ul id="menu">
+                    <li class="active"><a href="#distanceRecord">Km rögzítés</a></li>
+                    <li><a href="#distanceList">Eheti kilométereim</a></li>
+                    <li><a href="#distanceSummary">Összesen&nbsp;&nbsp;</a></li>
+                </ul>
+                <div class="content" id="distanceRecord">
+                    <p>Dátum: <span style="font-size:10px;">(éééé-hh-nn)</span><input type="text" id="datepicker" /></p>
+                    <p>Lefutott km: <br /><input id="distance" type="text" value="" /></p>
+                    <p><input id="recDistanceBtn" type="button" value="Rögzít" /></p>
+                    <p class="success"></p>
+                    <p class="error"></p>
+                </div>
+                <div class="content" id="distanceList"></div>
+                <div class="content" id="distanceSummary"></div>
+			</div>
+			<p>
+				<a href="/">Vissza</a>
+			</p>
+		</div>
+		{% include 'footer.html' %}	
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#menu').tabify();
+        $.datepicker.setDefaults($.datepicker.regional['hu']);
+        $('#datepicker').datepicker({ dateFormat: 'yy-mm-dd'});
+        $('#recDistanceBtn').click(function(){
+            FB.api('/me', function(response) {
+                saveToDb(response.id, $('#distance').val(), $('#datepicker').val(), response.last_name+' '+response.first_name);
+            });
+        });
+        
+        $('li a').click(function(){
+            if($(this).attr('href')=='#distanceList-tab')
+            {
+                FB.api('/me', function(response) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/ajax/getWeeklyList',
+                        dataType: 'html',
+                        data: 'fid=' + encodeURIComponent(response.id),
+                        beforeSend: function() {
+                
+                        },
+                        complete: function() {},
+                        success: function(result) {
+                            $('#distanceList').html(result)
+                        }
+                    });
+                });
+            }
+            if($(this).attr('href')=='#distanceSummary-tab')
+            {
+                FB.api('/me', function(response) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/ajax/getMonthSummary',
+                        dataType: 'html',
+                        data: 'fid=' + encodeURIComponent(response.id),
+                        beforeSend: function() {
+                
+                        },
+                        complete: function() {},
+                        success: function(result) {
+                            $('#distanceSummary').html(result)
+                        }
+                    });
+                });
+            }
+        });
+        
+        function saveToDb(fid, distance, date, name)
+        {
+            $.ajax({
+                type: 'POST',
+                url: '/ajax/addDistance',
+                dataType: 'json',
+                data: 'fid=' + encodeURIComponent(fid) + '&distance=' + encodeURIComponent(distance) + '&date=' + encodeURIComponent(date)+'&name=' + encodeURIComponent(name),
+                beforeSend: function() {
+                
+                },
+                complete: function() {},
+                success: function(data) {
+                    $('.error').hide();
+                    $('.success').hide();
+                    if (data.error) 
+                    {
+                        $('.error').html(data.error);
+                        $('.error').show();
+                    }
+                    if (data.success)
+                    {
+                        $('.success').html(data.success);
+                        $('.success').show();
+                        $('#distance').val(''); 
+                        $('#datepicker').val('');
+                    }
+                }
+            });
+        }
+    });
+    </script>
+</body>
+</html>

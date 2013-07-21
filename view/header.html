@@ -1,0 +1,52 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	
+    <title>Gödöllői futás játék</title>
+    <link href="http://fonts.googleapis.com/css?family=Oldenburg" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script> 
+    <script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/minified/i18n/jquery.ui.datepicker-hu.min.js"></script>   
+    <script src="/static/js/jquery.tabify.js"></script>
+    <style type="text/css">
+    #page{height:720px;}
+    #page h1{margin-left:40px;font-family: 'Oldenburg', Helvetica, Arial, sans-serif;}
+    #page p{margin-left:40px;margin-right:40px;font-family: 'Oldenburg', Helvetica, Arial, sans-serif;}
+    .white-right-box{height:400px;width:340px;margin-left:380px;background-color:white;opacity:0.7;}
+    .page-container{background-image: url(/static/img/background4.jpg);width: 760px;height: 850px;}
+    .page-container-gc{background-image: url(/static/img/background5.jpg);width: 760px;height: 850px;}
+    .page-container-gc #page p a{text-decoration:none;font-family: 'Oldenburg', Helvetica, Arial, sans-serif;}
+    .page-container-gc #page p a:hover{color:white;}
+    #page-title{background-image: url(/static/img/title2.jpg);width: 760px;height: 174px;}
+    #game-conditions{background-image:url(/static/img/game-conditions.png);width:389px;height:98px;cursor:pointer;margin-left:auto;margin-right:auto;margin-top:110px;}
+    #game-conditions:hover{background-image:url(/static/img/game-conditions-hover.png);}
+    #join-us{background-image:url(/static/img/join-us.png);width:281px;height:170px;cursor:pointer;margin-top:175px;margin-left:445px;}
+    #join-us:hover{background-image:url(/static/img/join-us-hover.png);}
+    #join-us a{width:250px;height:160px;display:block;margin-left:15px;}
+    #join-us a span{display:none;}
+    #partners{background-image:url(/static/img/partners.png);width:466px;height:40px;margin-left:auto;margin-right:auto;margin-top:45px;}
+    #partners p{position:absolute;margin-top:-30px;margin-left:-150px;}
+    #footer a, #footer-gc a{font-family: Helvetica, Arial, sans-serif;font-size:22px;text-decoration:none;color: #12546e;margin-left:15px;}
+    #footer a:hover, #footer-gc a:hover{color:white;}
+    .success{color:green;font-size:12px;display:none;}
+    .error{color:red;font-size:12px;display:none;}
+    #quotations{margin-top:-500px;position:absolute;width:500px;}
+    #menu { padding: 0; }
+    #menu li { display: inline; }
+    #menu li a { background: #ccf; padding: 10px; float:left; border-right: 1px solid #ccf; border-bottom: none; text-decoration: none; color: #000; font-weight: bold;}
+    #menu li.active a { background: #eef; }
+    .content { float: left; clear: both; border: 1px solid #ccf; border-top: none; border-left: none; background: #eef; padding: 10px 20px 20px; width: 300px; }
+    #topListContainer{margin-top:-310px;margin-left:10px;opacity:0.5;}
+    #topListMenu { padding: 0; }
+    #topListMenu li { display: inline; }
+    #topListMenu li a { background: green; padding: 10px; float:left; border-right: 1px solid white; border-bottom: none; text-decoration: none; color: white; font-weight: bold;}
+    #topListMenu li.active a { background: #213021; }
+    .topListContent { float: left; clear: both; border-top: none; border-left: none; padding: 10px 20px 20px; width: 300px; overflow-y:scroll;height:120px;}
+    #distanceList a{cursor:pointer;color:red;}
+    #distanceList tr td, th{width:85px;text-align:right;}
+    #distanceSummary tr td, th{width:85px;text-align:right;}
+    #distanceList table{border-collapse:collapse;}
+    #distanceSummary table{border-collapse:collapse;}
+    #distanceList table th{border-bottom:1px solid black;}
+    #distanceSummary table th{border-bottom:1px solid black;}
+    </style>
+</head>
